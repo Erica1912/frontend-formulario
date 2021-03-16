@@ -1,4 +1,4 @@
-##frontend-formulario
+# frontend-formulario
 
 ***Formulario de autenticación - Frontend con React***
 
