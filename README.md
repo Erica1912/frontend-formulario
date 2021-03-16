@@ -9,6 +9,6 @@ para separar las lógicas, del backend y el frontend.
 
 ***Frontend React / Hooks***
 
-Se listan los usuarios ingresados
+- Se listan los usuarios ingresados
 
 *Erica Ruiz*
