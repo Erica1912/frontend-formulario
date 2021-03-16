@@ -1,22 +1,65 @@
-import { render } from "@testing-library/react";
-import React from "react";
+import React from 'react'
 
-function FetchHook() {
-  const url = "http://localhost:3000/users";
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      for (let i = 0; i < data.length; i++) {
-        console.log(data[i]);
+
+/**
+
+* Custom hook for fetching data
+ * @param {string} url - Url to fetch
+ * @param {options} [options={}] - Fetch options
+ *
+ * @returns {{response, error, loading}} - State data
+ *
+ * @example
+ * function App() {
+ *  const res = useFetch('https://dog.ceo/api/breeds/image/random')
+ *
+ *  if (!res.response) {
+ *    return <div>Loading...</div>
+ *  }
+ *
+ *  const {status: name, message: url} = res
+ *
+ *  return (
+ *     <div className="App">
+ *       <div>
+ *         <h3>{dogName}</h3>
+ *           <div>
+ *           <img src={imageUrl} alt="avatar" />
+ *         </div>
+ *       </div>
+ *     </div>
+ *   );
+ * }
+ */
+ const useFetch = (url, options = {}) => {
+  const [response, setResponse] = React.useState(null)
+  
+  const [error, setError] = React.useState(null)
+  
+  const [isLoading, setIsLoading] = React.useState(false)
+  
+  React.useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true)
+      
+      try {
+        const res = await fetch(url, options)
+        
+        const json = await res.json()
+        
+        setResponse(json)
+        setIsLoading(false)
+        
+      } catch (error) {
+        setError(error);
+        setIsLoading(false)
       }
-    })
-    .catch((err) => console.log(err));
-
-  return (
-    <div>
-      <h1>otro</h1>
-    </div>
-  );
+    };
+    
+    fetchData()
+  }, [])
+  
+  return { response, error, isLoading }
 }
 
-export default FetchHook;
+export default useFetch
