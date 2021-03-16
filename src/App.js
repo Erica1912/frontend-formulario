@@ -19,7 +19,7 @@ function App() {
       <header className="App-header"></header>
       <ul>
         {response.map((item) => (
-          <li id={item.id}>{item.name}</li>
+         console.log(response)
         ))}
         console.log(response.data)
       </ul>
