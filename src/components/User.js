@@ -13,7 +13,7 @@ import {
 const User = () => {
   const { response, error, isLoading } = useFetch("/users", null, []);
   const { id } = useParams();
-  console.log(id)
+  
   return (
     <div>
       <Link to={`/components/${response.id}`}>{response.name}</Link>
