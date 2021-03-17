@@ -1,9 +1,7 @@
-import React from 'react'
-
-
+import React from "react";
+import Config from "../config";
 /**
-
-* Custom hook for fetching data
+ * Custom hook for fetching data
  * @param {string} url - Url to fetch
  * @param {options} [options={}] - Fetch options
  *
@@ -31,35 +29,36 @@ import React from 'react'
  *   );
  * }
  */
- const useFetch = (url, options = {}) => {
-  const [response, setResponse] = React.useState(null)
-  
-  const [error, setError] = React.useState(null)
-  
-  const [isLoading, setIsLoading] = React.useState(false)
-  
+const useFetch = (url, options, initialValue) => {
+  const [response, setResponse] = React.useState(initialValue);
+
+  const [error, setError] = React.useState(null);
+
+  const [isLoading, setIsLoading] = React.useState(false);
+
   React.useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true)
-      
+      setIsLoading(true);
+
       try {
-        const res = await fetch(url, options)
-        
-        const json = await res.json()
-        
-        setResponse(json)
-        setIsLoading(false)
-        
+        const res = await fetch(`${Config.baseUrl}${url}`, options);
+
+        const json = await res.json();
+
+        setResponse(json);
+        setError(null);
+        setIsLoading(false);
       } catch (error) {
+        setResponse(null);
         setError(error);
-        setIsLoading(false)
+        setIsLoading(false);
       }
     };
-    
-    fetchData()
-  }, [])
-  
-  return { response, error, isLoading }
-}
 
-export default useFetch
+    fetchData();
+  }, []);
+
+  return { response, error, isLoading };
+};
+
+export default useFetch;

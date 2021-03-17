@@ -1,30 +1,37 @@
-import logo from "./logo.svg";
-import "./App.css";
-import { Component } from "react";
 import useFetch from "./hooks/FetcHook";
+import Formulario from "./components/Formulario"
+
+
 function App() {
-  const { response, error, isLoading } = useFetch(
-    "http://localhost:3000/users"
-  );
+  const { response, error, isLoading } = useFetch("/users", null, []);
   if (isLoading) {
-    
     return <h1>Cargando sitio...</h1>;
   }
   if (error) {
-    return <h1>{error}</h1>;
+    return <h1>{error.toString()}</h1>;
   }
 
   return (
     <div className="App">
       <header className="App-header"></header>
-      <ul>
+      <div className= "container mt-5">
+          <Formulario/>
+      </div>
+      
+      <div>
         {response.map((item) => (
-         console.log(response)
+          <div key={item.id}>{item.name}</div>
         ))}
-        console.log(response.data)
-      </ul>
+      </div>
     </div>
-  );
+  ); /*
+  const { response, error, isLoading } = useFetch("/users/1", null, {});
+  if (isLoading) {
+    return <h1>Cargando sitio...</h1>;
+  }
+  if (error) {
+    return <h1>{error.toString()}</h1>;
+  }
+  return <div>Hola, {response.name}</div>;*/
 }
-
 export default App;
