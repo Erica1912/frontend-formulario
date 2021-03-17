@@ -8,8 +8,9 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route component={User} path="/User/:id" ><User /></Route>
-        <Route component={HomeView} exact path="/" ></Route>
+        <Route component={User} exact path="/components/:id">          
+        </Route>
+        <Route component={HomeView} exact path="/"></Route>
       </Switch>
     </Router>
   );
