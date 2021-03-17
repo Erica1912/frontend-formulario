@@ -23,7 +23,7 @@ function App() {
           <thead>
             <tr>
               <th scope="col">Nombre Completo</th>
-              <th scope="col">Email</th>
+              <th scope="col">Email Usuario</th>
             </tr>
           </thead>
           <tbody>
