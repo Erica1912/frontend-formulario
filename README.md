@@ -6,6 +6,7 @@
 
 - Para el manejo de las rutas en React se instala    ```npm install react-router-dom```
 - Bootstrap  ```npm install bootstrap```
+- Router  ```npm install react-router-dom```
 
 *Nota Importante*
 
