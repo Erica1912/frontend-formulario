@@ -2,6 +2,11 @@
 
 ***Formulario de autenticación - Frontend con React***
 
+***Instaladores***
+
+- Para el manejo de las rutas en React se instala    ```npm install react-router-dom```
+- Bootstrap  ```npm install bootstrap```
+
 *Nota Importante*
 
 La parte del backend se encuentra ubicado dentro del Repositorio [node_postgreSQL](https://github.com/Erica1912/node_postgreSQL)
